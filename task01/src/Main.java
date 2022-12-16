@@ -42,9 +42,10 @@ public class Main {
             }
     }
 
+
     //Start up method
     public static void startShell() {
-        System.out.println("Please enter start >> ");
+        System.out.println("Please enter name >> ");
         Scanner sc =  new Scanner(System.in);
         String line;
         boolean stop = false;
@@ -56,16 +57,60 @@ public class Main {
                 System.out.println("Exiting !!!");
                 stop = true;
             }
-            if (line.equalsIgnoreCase("start")) {
-                FormatCSV();
-                System.out.println("Please enter the name >> ");
-            } 
+            //if (line.equalsIgnoreCase("start")) {
+                ProcessInput(line);
+                //System.out.println("Please enter the name >> ");
+            //} 
         }
+        sc.close();
+    }
+
+    //Process input(Names) to run method
+    public static void ProcessInput(String input) {
+        Scanner sc  = new Scanner(input);
+        String command = sc.next().trim();
+
+        switch (command) {
+            case SHERLOCK:
+            FormatCSVSherlock();
+            System.out.println(".txt file is updated as Sherlock!");
+                break;
+    
+            case HARRY:
+            FormatCSVHarry();
+            System.out.println(".txt file is updated as Harry!");
+                break;
+    
+            case HOMLER:
+            FormatCSVHolmer();
+            System.out.println(".txt file is updated as Homler!");
+                break;
+    
+            case SHELDON:
+            FormatCSVSheldon();
+            System.out.println(".txt file is updated as Sheldon");
+                break;
+    
+            case BOB:
+            FormatCSVBob();
+            System.out.println(".txt file is updated as Bob!");
+            break;
+    
+            case FRED:
+            FormatCSVFred();
+            System.out.println(".txt file is updated as Fred!");
+            break;
+    
+            default:
+                break;
+        }
+    
+        sc.close();
     }
 
 
     //Process CSV method
-    public static void FormatCSV() {
+    public static void FormatCSVSherlock() {
         
     try {
     String path = "task01/thankyou.csv";
@@ -76,22 +121,23 @@ public class Main {
     List<String> addressList = new ArrayList<>();
     List<String> yearsList = new ArrayList<>();
 
-    String linex = br.readLine();
-    for (Integer i = 1; i <= 1; i++) {
-        String line = br.readLine();
-        if (null == line)
-            break;
-        String[] index = line.split(",");
-        firstNameList.add(index[0]);
-        lastNameList.add(index[1]);
-        addressList.add(index[2]);
-        yearsList.add(index[3]);
-        wordMap.put("first_name", firstNameList);
-        wordMap.put("last_name", lastNameList);
-        wordMap.put("address", addressList);
-        wordMap.put("years", yearsList);
- 
-    }
+    Integer counter = 0;
+    String line = null;
+    while((line = br.readLine()) != null) {
+        counter++;
+        if(counter == 2 || counter == 2)
+        {
+            String[] index = line.split(",");
+            firstNameList.add(index[0]);
+            lastNameList.add(index[1]);
+            addressList.add(index[2]);
+            yearsList.add(index[3]);
+            wordMap.put("first_name", firstNameList);
+            wordMap.put("last_name", lastNameList);
+            wordMap.put("address", addressList);
+            wordMap.put("years", yearsList);
+        }
+    }  
     br.close();
 
     //Print to .txt file
@@ -121,37 +167,297 @@ public class Main {
      
     }
 
-    //Process input(Names) to run method
-    public static void ProcessInput(String input) {
-        Scanner sc  = new Scanner(input);
-        String command = sc.next().trim();
+    //Process Harry
+    public static void FormatCSVHarry() {
+        
+        try {
+        String path = "task01/thankyou.csv";
+        Map<String, List<String>> wordMap = new HashMap<String, List<String>>();
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        List<String> firstNameList = new ArrayList<>();
+        List<String> lastNameList = new ArrayList<>();
+        List<String> addressList = new ArrayList<>();
+        List<String> yearsList = new ArrayList<>();
 
-        switch (command) {
-            case SHERLOCK:
-            
-                break;
+        Integer counter = 0;
+        String line = null;
+        while((line = br.readLine()) != null) {
+            counter++;
+            if(counter == 3 || counter == 3)
+            {
+                String[] index = line.split(",");
+                firstNameList.add(index[0]);
+                lastNameList.add(index[1]);
+                addressList.add(index[2]);
+                yearsList.add(index[3]);
+                wordMap.put("first_name", firstNameList);
+                wordMap.put("last_name", lastNameList);
+                wordMap.put("address", addressList);
+                wordMap.put("years", yearsList);
+            }
+        }  
+        br.close();
     
-            case HARRY:
-                break;
+        //Print to .txt file
+        try (FileOutputStream fos = new FileOutputStream("task01/thankyou.txt")) {
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
     
-            case HOMLER:
-                break;
+                String line1 = String.format("%s\n\n", wordMap.get("address").toString().replaceAll("[\\[\\],]","").replaceAll("\\n", ""));
+                String line2 = String.format("Dear %s,\n\n", wordMap.get("first_name").toString().replaceAll("[\\[\\],]",""));
+                String line3 = String.format("Thank you for staying with us over these %s years.\n\n", wordMap.get("years").toString().replaceAll("[\\[\\],]",""));
+                osw.write(line1);
+                osw.write(line2);
+                osw.write(line3);
     
-            case SHELDON:
-                break;
     
-            case BOB:
-            break;
-    
-            case FRED:
-            break;
-    
-            default:
-                break;
+            osw.flush();
+            osw.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     
-        sc.close();
-    }
+         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+         } catch (IOException e) {
+            e.printStackTrace();
+         }     
+         
+        }
+
+    //Process Holmer
+    public static void FormatCSVHolmer() {
+        
+        try {
+        String path = "task01/thankyou.csv";
+        Map<String, List<String>> wordMap = new HashMap<String, List<String>>();
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        List<String> firstNameList = new ArrayList<>();
+        List<String> lastNameList = new ArrayList<>();
+        List<String> addressList = new ArrayList<>();
+        List<String> yearsList = new ArrayList<>();
+
+        Integer counter = 0;
+        String line = null;
+        while((line = br.readLine()) != null) {
+            counter++;
+            if(counter == 4 || counter == 4)
+            {
+                String[] index = line.split(",");
+                firstNameList.add(index[0]);
+                lastNameList.add(index[1]);
+                addressList.add(index[2]);
+                yearsList.add(index[3]);
+                wordMap.put("first_name", firstNameList);
+                wordMap.put("last_name", lastNameList);
+                wordMap.put("address", addressList);
+                wordMap.put("years", yearsList);
+            }
+        }  
+        br.close();
+    
+        //Print to .txt file
+        try (FileOutputStream fos = new FileOutputStream("task01/thankyou.txt")) {
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+    
+                String line1 = String.format("%s\n\n", wordMap.get("address").toString().replaceAll("[\\[\\],]","").replaceAll("\\n", ""));
+                String line2 = String.format("Dear %s,\n\n", wordMap.get("first_name").toString().replaceAll("[\\[\\],]",""));
+                String line3 = String.format("Thank you for staying with us over these %s years.\n\n", wordMap.get("years").toString().replaceAll("[\\[\\],]",""));
+                osw.write(line1);
+                osw.write(line2);
+                osw.write(line3);
+    
+    
+            osw.flush();
+            osw.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
+         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+         } catch (IOException e) {
+            e.printStackTrace();
+         }     
+         
+        }
+
+    //Process Sheldon
+    public static void FormatCSVSheldon() {
+        
+        try {
+        String path = "task01/thankyou.csv";
+        Map<String, List<String>> wordMap = new HashMap<String, List<String>>();
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        List<String> firstNameList = new ArrayList<>();
+        List<String> lastNameList = new ArrayList<>();
+        List<String> addressList = new ArrayList<>();
+        List<String> yearsList = new ArrayList<>();
+
+        Integer counter = 0;
+        String line = null;
+        while((line = br.readLine()) != null) {
+            counter++;
+            if(counter == 5 || counter == 5)
+            {
+                String[] index = line.split(",");
+                firstNameList.add(index[0]);
+                lastNameList.add(index[1]);
+                addressList.add(index[2]);
+                yearsList.add(index[3]);
+                wordMap.put("first_name", firstNameList);
+                wordMap.put("last_name", lastNameList);
+                wordMap.put("address", addressList);
+                wordMap.put("years", yearsList);
+            }
+        }  
+        br.close();
+    
+        //Print to .txt file
+        try (FileOutputStream fos = new FileOutputStream("task01/thankyou.txt")) {
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+    
+                String line1 = String.format("%s\n\n", wordMap.get("address").toString().replaceAll("[\\[\\],]","").replaceAll("\\n", ""));
+                String line2 = String.format("Dear %s,\n\n", wordMap.get("first_name").toString().replaceAll("[\\[\\],]",""));
+                String line3 = String.format("Thank you for staying with us over these %s years.\n\n", wordMap.get("years").toString().replaceAll("[\\[\\],]",""));
+                osw.write(line1);
+                osw.write(line2);
+                osw.write(line3);
+    
+    
+            osw.flush();
+            osw.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
+         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+         } catch (IOException e) {
+            e.printStackTrace();
+         }     
+         
+        }
+
+    //Process Bob
+    public static void FormatCSVBob() {
+        
+        try {
+        String path = "task01/thankyou.csv";
+        Map<String, List<String>> wordMap = new HashMap<String, List<String>>();
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        List<String> firstNameList = new ArrayList<>();
+        List<String> lastNameList = new ArrayList<>();
+        List<String> addressList = new ArrayList<>();
+        List<String> yearsList = new ArrayList<>();
+
+        Integer counter = 0;
+        String line = null;
+        while((line = br.readLine()) != null) {
+            counter++;
+            if(counter == 6 || counter == 6)
+            {
+                String[] index = line.split(",");
+                firstNameList.add(index[0]);
+                lastNameList.add(index[1]);
+                addressList.add(index[2]);
+                yearsList.add(index[3]);
+                wordMap.put("first_name", firstNameList);
+                wordMap.put("last_name", lastNameList);
+                wordMap.put("address", addressList);
+                wordMap.put("years", yearsList);
+            }
+        }  
+        br.close();
+    
+        //Print to .txt file
+        try (FileOutputStream fos = new FileOutputStream("task01/thankyou.txt")) {
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+    
+                String line1 = String.format("%s\n\n", wordMap.get("address").toString().replaceAll("[\\[\\],]","").replaceAll("\\n", ""));
+                String line2 = String.format("Dear %s,\n\n", wordMap.get("first_name").toString().replaceAll("[\\[\\],]",""));
+                String line3 = String.format("Thank you for staying with us over these %s years.\n\n", wordMap.get("years").toString().replaceAll("[\\[\\],]",""));
+                osw.write(line1);
+                osw.write(line2);
+                osw.write(line3);
+    
+    
+            osw.flush();
+            osw.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
+         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+         } catch (IOException e) {
+            e.printStackTrace();
+         }     
+         
+        }
+
+    //Process Fred
+    public static void FormatCSVFred() {
+        
+        try {
+        String path = "task01/thankyou.csv";
+        Map<String, List<String>> wordMap = new HashMap<String, List<String>>();
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        List<String> firstNameList = new ArrayList<>();
+        List<String> lastNameList = new ArrayList<>();
+        List<String> addressList = new ArrayList<>();
+        List<String> yearsList = new ArrayList<>();
+
+        Integer counter = 0;
+        String line = null;
+        while((line = br.readLine()) != null) {
+            counter++;
+            if(counter == 7 || counter == 7)
+            {
+                String[] index = line.split(",");
+                firstNameList.add(index[0]);
+                lastNameList.add(index[1]);
+                addressList.add(index[2]);
+                yearsList.add(index[3]);
+                wordMap.put("first_name", firstNameList);
+                wordMap.put("last_name", lastNameList);
+                wordMap.put("address", addressList);
+                wordMap.put("years", yearsList);
+            }
+        }  
+        br.close();
+    
+        //Print to .txt file
+        try (FileOutputStream fos = new FileOutputStream("task01/thankyou.txt")) {
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+    
+                String line1 = String.format("%s\n\n", wordMap.get("address").toString().replaceAll("[\\[\\],]","").replaceAll("\\n", ""));
+                String line2 = String.format("Dear %s,\n\n", wordMap.get("first_name").toString().replaceAll("[\\[\\],]",""));
+                String line3 = String.format("Thank you for staying with us over these %s years.\n\n", wordMap.get("years").toString().replaceAll("[\\[\\],]",""));
+                osw.write(line1);
+                osw.write(line2);
+                osw.write(line3);
+    
+    
+            osw.flush();
+            osw.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
+         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+         } catch (IOException e) {
+            e.printStackTrace();
+         }     
+         
+        }
+
+    
 
 }
     
