@@ -34,24 +34,22 @@ public class Calculator {
       char operator = index[1].charAt(0);
 
       float output = 0;
-      switch (operator) {
-        case '+':
-          output = a + b;
-          break;
-        case '-':
-          output = a - b;
-          break;
-        case '*':
-          output = a * b;
-          break;
-        case '/':
-          output = a / b;
-          break;
-        default:
-          System.out.println("Check operator!!!");
-          continue;
-      }
 
+      if (operator == '+') {
+        output = a + b;
+      }
+      else if (operator == '-') {
+        output = a - b;
+      }
+      else if (operator == '*') {
+        output = a * b;
+      }
+      else if (operator == '/') {
+        output = a / b;
+      }
+      else {
+        System.out.println("Check operator!!!");
+      }
       prevOutput = output;
       System.out.println(output);
     }
