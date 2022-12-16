@@ -14,24 +14,24 @@ public class Calculator {
         break;
       }
 
-      String[] tokens = input.split(" ");
-      if (tokens.length != 3) {
-        System.out.println("Error: invalid expression");
+      String[] index = input.split(" ");
+      if (index.length != 3) {
+        System.out.println("Invalid expression!!!");
         continue;
       }
 
       float num1, num2;
-      if (tokens[0].equals("$last")) {
+      if (index[0].equals("$last")) {
         num1 = lastResult;
       } else {
-        num1 = Float.parseFloat(tokens[0]);
+        num1 = Float.parseFloat(index[0]);
       }
-      if (tokens[2].equals("$last")) {
+      if (index[2].equals("$last")) {
         num2 = lastResult;
       } else {
-        num2 = Float.parseFloat(tokens[2]);
+        num2 = Float.parseFloat(index[2]);
       }
-      char operator = tokens[1].charAt(0);
+      char operator = index[1].charAt(0);
 
       float result = 0;
       switch (operator) {
@@ -48,7 +48,7 @@ public class Calculator {
           result = num1 / num2;
           break;
         default:
-          System.out.println("Error: invalid operator");
+          System.out.println("Invalid operator!!!");
           continue;
       }
 
