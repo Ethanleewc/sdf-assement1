@@ -2,13 +2,13 @@ import java.util.Scanner;
 
 public class Calculator {
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
     System.out.println("Welcome.");
-    float lastResult = 0;
+    float prevOutput = 0;
 
     while (true) {
       System.out.print("> ");
-      String input = scanner.nextLine();
+      String input = sc.nextLine();
 
       if (input.equals("exit")) {
         break;
@@ -16,46 +16,46 @@ public class Calculator {
 
       String[] index = input.split(" ");
       if (index.length != 3) {
-        System.out.println("Invalid expression!!!");
+        System.out.println("Please input in this format e.g: a + b");
         continue;
       }
 
-      float num1, num2;
+      float a, b;
       if (index[0].equals("$last")) {
-        num1 = lastResult;
+        a = prevOutput;
       } else {
-        num1 = Float.parseFloat(index[0]);
+        a = Float.parseFloat(index[0]);
       }
       if (index[2].equals("$last")) {
-        num2 = lastResult;
+        b = prevOutput;
       } else {
-        num2 = Float.parseFloat(index[2]);
+        b = Float.parseFloat(index[2]);
       }
       char operator = index[1].charAt(0);
 
-      float result = 0;
+      float output = 0;
       switch (operator) {
         case '+':
-          result = num1 + num2;
+          output = a + b;
           break;
         case '-':
-          result = num1 - num2;
+          output = a - b;
           break;
         case '*':
-          result = num1 * num2;
+          output = a * b;
           break;
         case '/':
-          result = num1 / num2;
+          output = a / b;
           break;
         default:
-          System.out.println("Invalid operator!!!");
+          System.out.println("Check operator!!!");
           continue;
       }
 
-      lastResult = result;
-      System.out.println(result);
+      prevOutput = output;
+      System.out.println(output);
     }
 
-    scanner.close();
+    sc.close();
   }
 }
